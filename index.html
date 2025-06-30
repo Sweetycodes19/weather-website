@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 🔍 Search + Toggles -->
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Search city..." />
+      <button onclick="getWeather()">Search</button>
+      
+      <div class="toggle-wrapper">
+        <label class="switch">
+          <input type="checkbox" id="unitToggle" />
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-label">°C / °F</span>
+      </div>
+
+      <div class="toggle-wrapper">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-label" id="themeLabel">🌙 Dark</span>
+      </div>
+    </div>
+    <p id="errorMsg" class="error-msg"></p>
+
+    <!-- ⭐ Favorite Cities -->
+    <div class="favorites" id="favoriteCities"></div>
+
+    <div class="weather-card">
+      <!-- 🌤️ Current Weather -->
+      <div class="header">
+        <div class="location">
+          <h1 id="cityName">--</h1>
+          <p id="datetime">--</p>
+          <p id="description">--</p>
+        </div>
+        <div class="temperature">
+          <h1 id="temperature">--</h1>
+          <img id="weatherIcon" src="" alt="Icon" />
+        </div>
+      </div>
+
+      <!-- 📊 Stats -->
+      <div class="stats">
+        <div><p>Feels Like</p><h3 id="feelsLike">--</h3></div>
+        <div><p>Humidity</p><h3 id="humidity">--</h3></div>
+        <div><p>Wind Speed</p><h3 id="windSpeed">--</h3></div>
+      </div>
+
+      <!-- 🌅 Sunrise/Sunset -->
+      <div class="sun-times">
+        <div><p>Sunrise</p><h4 id="sunrise">--</h4></div>
+        <div><p>Sunset</p><h4 id="sunset">--</h4></div>
+      </div>
+
+      <!-- 🟢 AQI -->
+      <div class="aqi-box" id="aqiBox">AQI: --</div>
+
+      <!-- 🎛️ Actions -->
+      <div class="weather-actions">
+        <button onclick="speakForecast()">🔊 Speak</button>
+        <button onclick="shareForecast()">📤 Share</button>
+        <button onclick="saveToFavorites()">⭐ Save City</button>
+      </div>
+
+      <!-- 📆 Hourly Forecast Today -->
+      <h2>Today (Hourly)</h2>
+      <div class="hourly-grid" id="hourlyForecast"></div>
+
+      <!-- 📅 5-Day Forecast -->
+      <h2>5-Day Forecast</h2>
+      <div class="forecast-grid" id="forecast"></div>
+
+      <!-- 📍 Day Detail View -->
+      <div id="dailyDetailForecast" class="daily-detail hidden">
+        <div class="detail-header">
+          <h2 id="selectedDayTitle">Forecast for Selected Day</h2>
+          <button id="backToForecast">Back</button>
+        </div>
+        <div class="hourly-grid" id="detailedHourlyGrid"></div>
+      </div>
+
+      <!-- 🗺️ Map -->
+      <h2>Weather Map</h2>
+      <div id="weatherMap" style="height: 400px; border-radius: 12px; margin-top: 15px;"></div>
+    </div>
+  </div>
+
+  <!-- 🗺️ Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
